@@ -20,6 +20,7 @@ function BombPosition() {
         randomColumn -= 1;
         randomRow -= 1;
 
+        let xxxxx;        
         for (let k = 0; k < 3; k++) {
             for (let l = 0; l < 3; l++) {
                 newcol = randomColumn + k;
