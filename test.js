@@ -17,21 +17,19 @@ function BombPosition() {
         randomColumn = random();
         randomRow = random();
         multiArray[randomColumn][randomRow] = -1;
-        randomColumn -= 1;
-        randomRow -= 1;
+        let prevColumn = randomColumn - 1;
+        let prevRow = randomRow - 1;
 
-        let xxxxx;        
+
         for (let k = 0; k < 3; k++) {
             for (let l = 0; l < 3; l++) {
-                newcol = randomColumn + k;
-                newrow = randomRow + l;
+                newcol = prevColumn + k;
+                newrow = prevRow + l;
 
-                if ((randomColumn + 1) == newcol && (randomRow + 1 )== newrow) { continue; }
+                if ((prevColumn + 1) == newcol && (prevRow + 1) == newrow) { continue; }
 
-
-
+                //set the boundary for the game
                 if (newcol >= 0 && newcol < 9 && newrow >= 0 && newrow < 9) {
-
                     multiArray[newcol][newrow]++;
                 }
             }
