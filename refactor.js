@@ -4,6 +4,7 @@ let BoundaryRow;
 let stack = new Array();
 let revealList = new Array();
 let bombPositions = new Array();
+let duplicatedGameField = new Array();
 let CheckedPositions;
 let startposition;
 let entrySurroundingsPositions;
@@ -18,6 +19,7 @@ function chooseGameLevel(level) {
             console.log("easy");
             for (let i = 0; i < BoundaryCol; i++) {
                 GameField.push(new Array(BoundaryRow).fill(0));
+                duplicatedGameField.push(new Array(BoundaryRow).fill(0));
                 CheckedPositions.push(new Array(BoundaryRow).fill(0));
             }
             break;
@@ -59,8 +61,6 @@ function getPointSurroundings(x, y) {
 
             newcol = surroudingX + k;
             newrow = surroudingY + l;
-
-            //if ((prevColumn + 1) == newcol && (prevRow + 1) == newrow) { continue; }
 
             //set the boundary for the game
             if (newcol >= 0 && newcol < BoundaryCol && newrow >= 0 && newrow < BoundaryRow) {
@@ -131,7 +131,18 @@ function printGameField() {
         }
         console.log("")
     }
-    console.log(" seperator")
+
+
+}
+
+function printDuplicatedGameField(duplicatedGameField) {
+
+    for (let i = 0; i < BoundaryCol; i++) {
+        for (let j = 0; j < BoundaryRow; j++) {
+            process.stdout.write(`${duplicatedGameField[i][j]},     `);
+        }
+        console.log("")
+    }
 
 }
 
@@ -148,99 +159,87 @@ function real() {
 
 }
 
-// function reveal(pointToRevealx, poinToRevealy) {
-//     let currentPositionValue = GameField[pointToRevealx][poinToRevealy];
-
-//     if (currentPositionValue == 0) {
-
-//         stack.push([pointToRevealx, poinToRevealy]);
-//     }
-
-//     let poppedElementPosition = stack.pop();
-
-//     getPointSurroundings(poppedElementPosition[0], poppedElementPosition[1])
-//         .forEach(position => {
 
 
-//             if (GameField[position[0]][position[1]] > 0) {
-//                 revealList.push([position[0], position[1]]);
-//             }
-//             if (GameField[position[0]][position[1]] == 0) {
-//                 revealList.push([position[0], position[1]]);
-//                 //stack.push([position[0],position[1]]);
-//                 reveal(position[0], position[1]);
-//             }
-//         })
-//     if (stack.length == 0) {
-//         return;
-//     }
 
+function revealBlock(x, y) {
+    const currentPositionValue = GameField[x][y];
 
-// }
-
-function newreveal(pointToRevealx, pointToRevealy) {
-    let currentPositionValue = GameField[pointToRevealx][pointToRevealy];
-    if (pointToRevealx == startposition[0] && pointToRevealy == startposition[1]) {
-        if (stack.length == 0) {
-            if (CheckedPositions[pointToRevealx][pointToRevealy] == 0) {
-
-
-                stack.push([pointToRevealx, pointToRevealy]);
-                CheckedPositions[pointToRevealx][pointToRevealy] = 1;
-                console.log("the first stack",stack);
-
-            }
-
-        }
+    if ( isStackEmpty() && !isCheckedPosition(x, y)) {
+        stack.push([x, y]);
+        markCheckedPosition(x, y);
+        GameField[x][y] = "z";
 
     }
 
+    if (isWithinBoundaries(x, y) && !isStackEmpty()) {
+        getPointSurroundings(x, y).forEach(position => {
+            if (isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
+                stack.push([...position]);
+                markCheckedPosition(...position);
+                revealList.push([...position], `value:${GameField[position[0]][position[1]]}`);
+                GameField[position[0]][position[1]] = "c";
 
-    if ((pointToRevealx >= 0 && pointToRevealx < BoundaryCol && pointToRevealy >= 0 && pointToRevealy < BoundaryRow) && stack.length != 0) {
-
-        getPointSurroundings(pointToRevealx, pointToRevealy).forEach(posistion => {
-            if (GameField[posistion[0]][posistion[1]] == 0) {
-                if (posistion[0] != startposition[0] || posistion[1] != startposition[1]) {
-                    if (CheckedPositions[posistion[0]][posistion[1]] == 0) {
-
-                        stack.push([posistion[0], posistion[1]]);
-                        CheckedPositions[posistion[0]][posistion[1]] = 1;
-                        revealList.push([posistion[0], posistion[1]], `value:${GameField[posistion[0]][posistion[1]]}`);
-                        console.log(`this is the stack ${stack}`);
-                        
-                    }
-                }
+            } else if (!isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
+                revealList.push([...position], `value:${GameField[position[0]][position[1]]}`);
+                markCheckedPosition(...position);
+                GameField[position[0]][position[1]] = "m";
             }
+        });
+
+        const poppedElementPosition = stack.pop();
+        revealBlock(...poppedElementPosition);
 
 
-
-        })
-
-        let poppedElementPosition = stack.pop();
-        //stack.pop();
-        console.log(`this is the stack after popped ${stack}`);
-        console.log(poppedElementPosition);
-        
-        newreveal(poppedElementPosition[0], poppedElementPosition[1]);
-        GameField[poppedElementPosition[0]][poppedElementPosition[1]] = "ccc";
     }
+
+}
+
+// Helper functions
+function isStartPoint(x, y) {
+    return x === startposition[0] && y === startposition[1];
+}
+
+function isStackEmpty() {
+    return stack.length === 0;
+}
+
+function isCheckedPosition(x, y) {
+    return CheckedPositions[x][y] === 1;
+}
+
+function markCheckedPosition(x, y) {
+    CheckedPositions[x][y] = 1;
+}
+
+function isWithinBoundaries(x, y) {
+    return x >= 0 && x < BoundaryCol && y >= 0 && y < BoundaryRow;
+}
+
+function isEmptyCell(position) {
+    const [x, y] = position;
+    return GameField[x][y] === 0;
 }
 
 
 
 function main() {
     chooseGameLevel("easy");
-    entryPosition(5, 5);
-    GameField[5][5] = 0;
+    entryPosition(1, 1);
     setBombPositions(10);
     setBombsCounters();
-    newreveal(5, 5);
+    let duplicatedGameField = [...GameField];
+    printDuplicatedGameField(duplicatedGameField);
+    revealBlock(2, 2);
+    revealBlock(6,5);
     printGameField();
+
 
 }
 
 
 main();
 console.log(stack);
+console.log(revealList.length/2);
 console.log(revealList);
-console.log("adsfasdf");
+
