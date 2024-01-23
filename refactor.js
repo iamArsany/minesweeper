@@ -1,3 +1,5 @@
+const getUserInput=require('./input');
+
 let GameField;
 let BoundaryCol;
 let BoundaryRow;
