@@ -1,0 +1,46 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-flag: cal(var(var(--cell-size))*.9);
+}
+
+body {
+    margin: 0;
+
+}
+
+.GameField {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: #c0c0c0;
+    border: 8px solid white;
+    box-shadow: inset -10px -6px 2px 0px rgba(0, 0, 0, 0.45);
+    border-color: white rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.45) white;
+    border-radius: 3px;
+}
+
+:hover.cell {
+    background-color: #c0c0c0;
+    box-shadow: inset 6px 6px 0px 0px rgba(0, 0, 0, 0.45);
+    border-top: 0px;
+    border-left: 0px;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 0px;
+}
