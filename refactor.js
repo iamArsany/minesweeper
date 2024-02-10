@@ -1,15 +1,20 @@
-const getUserInput=require('./input');
+// const getUserInput=require('./input');
 
+let newcol;
+let newrow;
 let GameField;
 let BoundaryCol;
 let BoundaryRow;
 let stack = new Array();
 let revealList = new Array();
 let bombPositions = new Array();
+let bombPositionsValue = new Array();
 let duplicatedGameField = new Array();
 let CheckedPositions;
 let startposition;
 let entrySurroundingsPositions;
+let digitCounter = 0;
+
 function chooseGameLevel(level) {
     GameField = new Array();
     CheckedPositions = new Array();
@@ -84,6 +89,7 @@ function setBombPositions(bombsNumber) {
 
             GameField[randomPostion[0]][randomPostion[1]] = -1;
             bombPositions.push([randomPostion[0], randomPostion[1]]);
+            bombPositionsValue.push([[randomPostion[0], randomPostion[1]], -1]);
             i++;
         }
     }
@@ -99,6 +105,7 @@ function setBombsCounters() {
                     GameField[surroudingPosition[0]][surroudingPosition[1]] = 0;
                 }
                 GameField[surroudingPosition[0]][surroudingPosition[1]]++;
+                digitCounter++
             }
         });
     });
@@ -148,18 +155,7 @@ function printDuplicatedGameField(duplicatedGameField) {
 
 }
 
-function real() {
-    let stack = new Array();
-    getPointSurroundings(startposition[0], startposition[1]).forEach(posistion => {
-        if (GameField[posistion[0]][posistion[1]] == 0) {
-            stack.push([posistion[0], posistion[1]]);
-        }
 
-        let posotion = stack.pop();
-
-    });
-
-}
 
 
 
@@ -167,7 +163,10 @@ function real() {
 function revealBlock(x, y) {
     const currentPositionValue = GameField[x][y];
 
-    if ( isStackEmpty() && !isCheckedPosition(x, y)) {
+    if (isStackEmpty() && !isCheckedPosition(x, y)) {
+        if (GameField[x][y] > 0) {
+            return 0;
+        }
         stack.push([x, y]);
         markCheckedPosition(x, y);
         GameField[x][y] = "z";
@@ -179,11 +178,45 @@ function revealBlock(x, y) {
             if (isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
                 stack.push([...position]);
                 markCheckedPosition(...position);
-                revealList.push([...position], `value:${GameField[position[0]][position[1]]}`);
+                revealList.push([[...position], GameField[position[0]][position[1]]]);
                 GameField[position[0]][position[1]] = "c";
 
             } else if (!isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
-                revealList.push([...position], `value:${GameField[position[0]][position[1]]}`);
+                if (GameField[position[0]][position[1]] != "-1") {
+                    revealList.push([[...position], GameField[position[0]][position[1]]]);
+                }
+                markCheckedPosition(...position);
+                GameField[position[0]][position[1]] = "m";
+            }
+        });
+        const poppedElementPosition = stack.pop();
+        revealBlock(...poppedElementPosition);
+
+
+    }
+
+
+}
+
+function revealInGame(x, y) {
+
+    if (isStackEmpty() && !isCheckedPosition(x, y)) {
+        stack.push([x, y]);
+        markCheckedPosition(x, y);
+
+    }
+
+    if (isWithinBoundaries(x, y) && !isStackEmpty()) {
+        getPointSurroundings(x, y).forEach(position => {
+            if (isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
+                stack.push([...position]);
+                markCheckedPosition(...position);
+                revealList.push([[...position], GameField[position[0]][position[1]]]);
+                GameField[position[0]][position[1]] = "c";
+
+            } else if (!isEmptyCell(position) && !isStartPoint(...position) && !isCheckedPosition(...position)) {
+                if (GameField[position[0]][position[1]] != "-1")
+                    revealList.push([[...position], GameField[position[0]][position[1]]]);
                 markCheckedPosition(...position);
                 GameField[position[0]][position[1]] = "m";
             }
@@ -196,6 +229,8 @@ function revealBlock(x, y) {
     }
 
 }
+
+
 
 // Helper functions
 function isStartPoint(x, y) {
@@ -224,24 +259,31 @@ function isEmptyCell(position) {
 }
 
 
+function GameFieldfunc() {
+    return GameField;
+}
 
-function main() {
-    chooseGameLevel("easy");
-    entryPosition(1, 1);
-    setBombPositions(10);
-    setBombsCounters();
-    let duplicatedGameField = [...GameField];
-    printDuplicatedGameField(duplicatedGameField);
-    revealBlock(2, 2);
-    revealBlock(6,5);
+function revealListfunc() {
+    return revealList;
+}
+
+function bombPositionsfunc() {
+    return bombPositionsValue;
+}
+
+function GameFieldinput(x, y) {
+    return GameField[x][y];
+}
+
+function restartToDefault() {
+    stack = new Array();
+    revealList = new Array();
+    bombPositions = new Array();
+    bombPositionsValue = new Array();
+    duplicatedGameField = new Array();
+    console.log("this is the gamefield");
     printGameField();
-
 
 }
 
-
-main();
-console.log(stack);
-console.log(revealList.length/2);
-console.log(revealList);
-
+module.exports = { digitCounter, GameFieldinput, bombPositionsfunc, restartToDefault, revealListfunc, GameFieldfunc, printGameField, GameField, revealBlock, revealList, chooseGameLevel, entryPosition, setBombPositions, setBombsCounters }

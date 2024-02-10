@@ -5,111 +5,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="../frontend/script.js"></script>
     <title>Minesweeper</title>
 </head>
 
 <body>
+
+
     <div class="containter">
+
+
         <div class="status-bar">
-            
+            <div class="left">
+                <div class="cell-counter counter-zero"></div>
+                <div class="cell-counter counter-zero"></div>
+            </div>
+
+            <button id="restartButton" onclick="restartGame()" class="middle smileface-natural">
+                
+            </button>
+
+            <div class="right">
+                <div class="cell-counter counter-zero"></div>
+                <div class="cell-counter counter-zero"></div>
+            </div>
         </div>
         <div class="GameField" id="GameField">
-            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell " onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)">
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
 
 
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
-            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell></div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
+            <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
+            </div>
         </div>
-        <div class="winning-message" id="winningMessage">
-            <!-- <div data-winning-message-text></div> -->
-            <button id="restartButton" onclick="restartGame()">Restart</button>
-        </div>
+    </div>
+
+
+    <div class="level">
+        <button class="easy" onclick="chooseLevel('easy')">easy</button>
+        <button class="medium" onclick="chooseLevel('medium')">medium</button>
+        <button class="hard" onclick="chooseLevel('hard')">hard</button>
     </div>
 
 
