@@ -3,7 +3,7 @@
 // when i refresh the page or press restart it loads a new gamefield                doneeeeeeeeeeeeeeeeeeeeeeeee
 // handle the pressed bomb                                                          doneeeeeeeeeeeeeeeeeeeeeeeee
 //handle the status screen elments [numbersOfBombsLeft,Timecounter,restartButton]   doneeeeeeeeeeeeeeeeeeeeeeeee 
-//handle the frame outside the gamefield and status bar;                            
+//handle the frame outside the gamefield and status bar;                            doneeeeeeeeeeeeeeeeeeeeeeee
 //handle numberofBombsLeft logic                                                    doneeeeeeeeeeeeeeeeeeeeeeee
 //handle TimeCounter logic                                                          doneeeeeeeeeeeeeeeeeeeeeeee
 //handle restartButton                                                              doneeeeeeeeeeeeeeeeeeeeeeee
@@ -15,5 +15,5 @@
 //handle the bombs that are flagged                                                 doneeeeeeeeeeeeeeeeeeeeeeeee
 //handle the flag number error                                                      doneeeeeeeeeeeeeeeeeeeeeeeee
 //handle the bombs random error after pressed                                       doneeeeeeeeeeeeeeeeeeeeeeeee
-//handle the popup msg
-//handle the 
+//handle the popup msg                                                              doneeeeeeeeeeeeeeeeeeeeeeeee
+//handle the scalling problem                                                       doneeeeeeeeeeeeeeeeeeeeeeeee

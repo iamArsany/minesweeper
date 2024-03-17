@@ -1,6 +1,3 @@
-// const { response } = require("express");
-
-// import { GameField } from "../refactor";
 let firstTime = true;
 let FirstTimeBomb = true;
 let GameFieldBoard;
@@ -18,7 +15,6 @@ let minuteCounter=0;
 let firstTimeCountMinute = true;
 let intervalId;
 let cells;
-// let winCounter = 0;
 let numOfCells;
 let CheckForTheLastFlagMark = false;
 
@@ -138,78 +134,67 @@ function chooseLevel(Level) {
 }
 
 function displayWinningMsg(message) {
-    // Create a div element for the popup message
+    
     const popup = document.createElement("div");
     popup.classList.add("popup");
 
     // Apply CSS styles to center the popup
     popup.style.position = "fixed";
     popup.style.width = "30%";
-    popup.style.height = "30%";
+    popup.style.maxWidth = "400px"; 
+    popup.style.height = "auto";
     popup.style.top = "50%";
     popup.style.left = "50%";
     popup.style.transform = "translate(-50%, -50%)";
-    popup.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+    popup.style.backgroundColor = "black";
+    popup.style.color = "white";
     popup.style.padding = "20px";
-    popup.style.border = "2px solid black";
     popup.style.borderRadius = "10px";
     popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
-    // popup.style.zIndex = "9999"; // Ensure it appears on top of other elements
 
     // Create a div for the "Congratulations" message
     const congratsMsg = document.createElement("div");
     congratsMsg.textContent = "Congratulations!";
-    congratsMsg.fontSize = "xxx-large";
-    congratsMsg.style.backgroundColor = "green";
-    congratsMsg.style.color = "white";
-    congratsMsg.style.width = "100%";
-    congratsMsg.style.height = "100%";
-    congratsMsg.style.position = "absolute";
-    congratsMsg.style.top = "0";
-    congratsMsg.style.left = "0";
-    congratsMsg.style.padding = "10px";
-    congratsMsg.style.borderRadius = "5px";
+    congratsMsg.style.fontWeight = "bold";
+    congratsMsg.style.marginBottom = "10px"; 
     congratsMsg.style.textAlign = "center";
-    congratsMsg.style.zIndex = "-1";
 
+    // Create a simple line separator
+    const separator = document.createElement("hr");
+    separator.style.border = "none";
+    separator.style.borderTop = "1px solid white";
+    separator.style.margin = "10px 0"; 
 
-    const MsgBody = document.createElement("div");
-    MsgBody.textContent = `Time: ${minuteCounter} : ${message}`;
-    MsgBody.style.width = "70%";
-    MsgBody.style.height = "70%";
-    MsgBody.style.left = "50%";
-    MsgBody.style.backgroundColor = "red";
-    MsgBody.style.zIndex = "9999";
-    // MsgBody.style.transform = "translate(25%)"
-    MsgBody.style.transform = "translate(25%,10%)"
+    // Create a div for the message body
+    const msgBody = document.createElement("div");
+    msgBody.innerHTML = `<br>Time: ${minuteCounter}: ${message}`;
 
-
+    msgBody.style.fontSize = "1em"; 
+    msgBody.style.textAlign = "center";
 
     // Create an OK button
     const okButton = document.createElement("button");
     okButton.textContent = "OK";
-    okButton.style.width = "20%";
-    okButton.style.height = "15%";
-    // okButton.style.fontSize = "xx-large";
-    okButton.style.position = "absolute";
-    okButton.style.bottom = "10px"; // Position the button at the bottom
-    okButton.style.left = "50%"; // Center the button horizontally
-    okButton.style.transform = "translateX(-50%)"; // Adjust for centering
+    okButton.style.width = "100%";
+    okButton.style.padding = "10px";
+    okButton.style.fontSize = "1em"; 
+    okButton.style.marginTop = "20px";
 
-    // Add a click event listener to the OK button to remove the popup
     okButton.addEventListener("click", () => {
         popup.remove();
     });
 
-    // Append the "Congratulations" message and OK button to the popup
+    // Append the elements to the popup
     popup.appendChild(congratsMsg);
-    popup.appendChild(MsgBody)
+    popup.appendChild(separator);
+    popup.appendChild(msgBody);
     popup.appendChild(okButton);
 
 
-    // Append the popup to the body
     document.body.appendChild(popup);
 }
+
+
 
 
 
@@ -229,7 +214,6 @@ function checkIfWin() {
             winCounter++; // Increment win counter
         }
     });
-    console.log(totalCells);
     if (winCounter === totalCells) {
         stopCounter(); // Stop the counter (assuming you have a stopCounter function)
         smilefaceWin();
@@ -266,7 +250,7 @@ function toggleFlagMarkCell(cell) {
             cell.onclick = null;
         }
         if (FlagsCounter <= 1) {
-            console.log(checkIfWin());
+            
         }
 
     } else if (FirstTimeBomb && FlagsCounter == 0 && cell.classList.contains("flag-mark")) {
@@ -282,7 +266,6 @@ function toggleFlagMarkCell(cell) {
 
 async function toggleclickedCell(cell) {
 
-    console.log("working fine");
     var index = Array.from(cell.parentNode.children).indexOf(cell);
     col = index % 9;
     row = Math.trunc(index / 9);
@@ -290,7 +273,6 @@ async function toggleclickedCell(cell) {
     indexOfClickedCell = col * 9 + row;
     try {
         if (firstTime) {
-            console.log("firsttime");
             await initializeGame();
             //start the counter
             startCounter();
@@ -307,7 +289,7 @@ async function toggleclickedCell(cell) {
         const response = await fetch('http://localhost:3000/api/revealCell');
         const data = await response.json();
         revealLst = data[0];
-        console.log(revealLst);
+        
 
 
 
@@ -315,7 +297,7 @@ async function toggleclickedCell(cell) {
         let valueOfGameField;
 
         for (let i = 0; i < revealLst.length; i++) {
-            console.log("number of elements inside teh revealst is: ", revealLst.length)
+            
             let divIndex = revealLst[i][0];
             divIndex = divIndex[0] * 9 + divIndex[1];
 
@@ -339,7 +321,7 @@ async function toggleclickedCell(cell) {
                 if (CellElemetHasFlag) {
                     cell_element[divIndex].onclick = null;
                     cell_element[divIndex].oncontextmenu = null;
-                    console.log(`if `, i);
+                   
                 } else {
                     cell_element[divIndex].classList.add('clickedCell');
                     cell_element[divIndex].onclick = null;
@@ -368,7 +350,7 @@ async function toggleclickedCell(cell) {
         }
 
         if (FlagsCounter <= 1) {
-            console.log(checkIfWin());
+            
         }
 
     } catch (error) {
@@ -409,7 +391,7 @@ async function initializeGame() {
                         cell_element[divIndex].classList.add(cell_value);
                     } else {
                         if (cell_value == "m" || cell_value == "c" || cell_value == "z") {
-                            console.log(cell_value);
+                           
                             // Handle m case
                         }
                         else {
@@ -439,6 +421,7 @@ async function restartGame() {
             location.reload();
 
         }, 100);
+        
 
     } catch (error) {
 

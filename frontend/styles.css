@@ -6,7 +6,7 @@
 
 :root {
     --cell-size: 100px;
-    --column-number: 90px;
+    --column-number: 9;
     --mark-flag: calc(var(--cell-size)*.9);
 }
 
@@ -15,28 +15,34 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-
     margin: 0;
 
 }
 
 
 .GameField {
-    width: 100%;
+    width: calc(var(--cell-size)*var(--column-number));
     height: 100%;
-    margin: 0;
+    margin: 0 auto;
     display: grid;
     justify-content: center;
     align-content: center;
     align-items: center;
-    grid-template-columns: repeat(9, auto);
+    grid-template-columns: repeat(var(--column-number), auto);
+    /* transform: scale(0.5); */
 }
 
 .container {
-    width: calc(var(--cell-size)*--columns-number);
-    height: 90vh;
-    margin: auto;
-    /* transform: scale(0.8); */
+    width: calc(var(--cell-size)*var(--column-number))+20px;
+    margin: 0 auto;
+    transform: scale(0.6);
+    border: 20px solid rgb(127, 127, 127); /* Add border to create a frame */
+    /* padding: 20px; */
+    box-sizing: border-box;
+     border-top-color: #e3e3e3;
+    border-left-color: #c0c0c0;
+    border-right-color: #6a6a6a;
+    border-bottom-color: #6a6a6a;
 }
 
 .cell {
@@ -47,6 +53,8 @@ body {
     border: 8px solid white;
     box-shadow: inset -10px -6px 2px 0px rgba(0, 0, 0, 0.45);
     border-color: white rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.45) white;
+
+   
     border-radius: 3px;
     overflow: hidden;
 
