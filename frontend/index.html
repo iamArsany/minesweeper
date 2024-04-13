@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="../frontend/script.js"></script>
+    <script src="./Ai_solver.js"></script>
     <title>Minesweeper</title>
 </head>
 
 <body>
-
 
     <div class="container">
 
@@ -22,7 +22,7 @@
             </div>
 
             <button id="restartButton" onclick="restartGame()" class="middle smileface-natural">
-                
+
             </button>
 
             <div class="right">
@@ -204,14 +204,17 @@
             <div class="cell" onclick="toggleclickedCell(this)" oncontextmenu="toggleFlagMarkCell(this)" data-cell>
             </div>
         </div>
-    </div>
 
+        <button class="solve-ai" onclick="Ai_solver()">Ai Solve</button>
+
+    </div>
 
     <div class="level">
         <button class="easy" onclick="chooseLevel('easy')">easy</button>
         <button class="medium" onclick="chooseLevel('medium')">medium</button>
         <button class="hard" onclick="chooseLevel('hard')">hard</button>
     </div>
+
 
 
 </body>

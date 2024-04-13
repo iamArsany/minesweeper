@@ -17,3 +17,10 @@
 //handle the bombs random error after pressed                                       doneeeeeeeeeeeeeeeeeeeeeeeee
 //handle the popup msg                                                              doneeeeeeeeeeeeeeeeeeeeeeeee
 //handle the scalling problem                                                       doneeeeeeeeeeeeeeeeeeeeeeeee
+//   handle the "z" that added to the revealList                                    doneeeeeeeeeeeeeeeeeeeeeeeee
+//   (this happen because the clicked cell by mouse didn't handle it)               doneeeeeeeeeeeeeeeeeeeeeeeee
+
+//the size of the playergamefield when restart the game is getting doubled
+
+
+

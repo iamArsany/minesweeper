@@ -25,8 +25,8 @@ app.post('/api/initializeGameComponents', (req, res) => {
         refactor.setBombsCounters();
 
         refactor.printGameField();
-
-
+        refactor.addClickedCellToRevealList(...positions);
+        console.log("this is the check from the server to see if the gamefieldboard prolbem is form here",refactor.GameFieldfunc(),refactor.revealListfunc());
         res.status(200).json([refactor.GameFieldfunc(), refactor.revealListfunc()]);
     } catch (error) {
         console.error('Error in /api/initializeGameComponents:', error);
@@ -42,10 +42,11 @@ app.post('/api/revealCellPost', (req, res) => {
 
 
         if (firstTime) {
-            console.log("////////////////////////");
             firstTime = false;
             refactor.revealBlock(...revealPositions);
+            refactor.addClickedCellToRevealList(...revealPositions);
             res.status(200).json({ revealList: refactor.revealListfunc() });
+            // console.log(refactor.revealListfunc())
         } else {
             console.log("..............")
             if (refactor.GameFieldinput(...revealPositions) == -1) {
@@ -55,7 +56,7 @@ app.post('/api/revealCellPost', (req, res) => {
             } else {
                 console.log("not bomb");
                 refactor.revealBlock(...revealPositions);
-                console.log(refactor.revealListfunc());
+                refactor.addClickedCellToRevealList(...revealPositions);
                 res.status(200).json({ revealList: refactor.revealListfunc() });
             }
         }
@@ -69,12 +70,21 @@ app.post('/api/revealCellPost', (req, res) => {
     }
 });
 
+app.get('/api/playergamefield', (req, res) => {
+    try {
+        res.status(200).json(refactor.GameFieldOfPlayer())
+    } catch (err) {
+        console.error('Error in /api/playergamefield:', err)
+        res.status(500).json({ error: "internal server error" })
+    }
+})
+
 app.get('/api/revealCell', (req, res) => {
     try {
         if (ISBombClicked) {
             res.status(200).json([refactor.bombPositionsfunc()]);
         } else {
-
+            // console.log("/api/revealCell",refactor.revealListfunc());
             res.status(200).json([refactor.revealListfunc()]);
         }
     } catch (error) {
@@ -98,8 +108,8 @@ app.get('/api/restartGame', (req, res) => {
         ISBombClicked = false;
         refactor.restartToDefault()
         console.log("revealList after restart: ", refactor.revealListfunc());
-        
-        res.status(200).json({list:"iam here and refreshed"});
+
+        res.status(200).json({ list: "iam here and refreshed" });
     } catch (err) {
         console.error(err);
     }

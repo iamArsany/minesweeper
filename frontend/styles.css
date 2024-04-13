@@ -20,6 +20,20 @@ body {
 }
 
 
+
+/* .container {
+    width: calc(var(--cell-size) * var(--column-number)) + 20px;
+    margin: 0 auto;
+    transform: scale(0.6);
+    border: 20px solid rgb(127, 127, 127);
+    box-sizing: border-box;
+    border-top-color: #e3e3e3;
+    border-left-color: #c0c0c0;
+    border-right-color: #6a6a6a;
+    border-bottom-color: #6a6a6a;
+} */
+
+
 .GameField {
     width: calc(var(--cell-size)*var(--column-number));
     height: 100%;
@@ -33,17 +47,21 @@ body {
 }
 
 .container {
-    width: calc(var(--cell-size)*var(--column-number))+20px;
+    width: calc(var(--cell-size) * var(--column-number)) + 20px;
     margin: 0 auto;
     transform: scale(0.6);
-    border: 20px solid rgb(127, 127, 127); /* Add border to create a frame */
-    /* padding: 20px; */
+    border: 20px solid rgb(127, 127, 127);
     box-sizing: border-box;
-     border-top-color: #e3e3e3;
+    border-top-color: #e3e3e3;
     border-left-color: #c0c0c0;
     border-right-color: #6a6a6a;
     border-bottom-color: #6a6a6a;
+    position: relative;
+    /* Ensure relative positioning for absolute positioning of the button */
 }
+
+/* Style your button within the ::after pseudo-element */
+
 
 .cell {
     position: relative;
@@ -54,12 +72,39 @@ body {
     box-shadow: inset -10px -6px 2px 0px rgba(0, 0, 0, 0.45);
     border-color: white rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.45) white;
 
-   
+
     border-radius: 3px;
     overflow: hidden;
 
 
 }
+
+.solve-ai {
+    background-color: #b5b3b3;
+    /* Example background color */
+    color: #000000;
+    /* Example text color */
+    padding: 10px 20px;
+    /* Example padding */
+    border: 10px solid;
+    /* Example border */
+    border-radius: 5px;
+    /* Example border radius */
+    position: absolute;
+    /* Position the button absolutely */
+    bottom: -10%;
+    /* Adjust this value to move the button below the bottom border */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    font-size: xx-large;
+    border-top-color: #e3e3e3;
+    border-left-color: #c0c0c0;
+    border-right-color: #6a6a6a;
+    border-bottom-color: #6a6a6a;
+}
+
+
 
 .cell-counter {
     position: relative;
@@ -124,8 +169,14 @@ body {
     /* transform: scale(0.98); */
     border: 0px;
 }
-
+.solve-ai:active{
+     border: 10px solid #979797;
+     
+}
 :hover.cell {
+    background-color: #979797;
+}
+:hover.solve-ai{
     background-color: #979797;
 }
 
@@ -159,11 +210,13 @@ body {
     border-color: white rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.45) white;
     border-radius: 3px;
 }
+
 .easy:hover,
 .medium:hover,
-.hard:hover{
+.hard:hover {
     background-color: rgba(160, 156, 156, 0.906);
 }
+
 .easy:active,
 .medium:active,
 .hard:active {
@@ -334,7 +387,8 @@ body {
 .smileface-lose::before {
     content: "";
     position: absolute;
-    top: -1%;;
+    top: -1%;
+    ;
     left: 35.5%;
     display: flex;
     justify-content: center;

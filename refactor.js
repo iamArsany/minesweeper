@@ -10,6 +10,8 @@ let revealList = new Array();
 let bombPositions = new Array();
 let bombPositionsValue = new Array();
 let duplicatedGameField = new Array();
+let playerGameField = new Array();
+
 let CheckedPositions;
 let startposition;
 let entrySurroundingsPositions;
@@ -27,6 +29,7 @@ function chooseGameLevel(level) {
             for (let i = 0; i < BoundaryCol; i++) {
                 GameField.push(new Array(BoundaryRow).fill(0));
                 duplicatedGameField.push(new Array(BoundaryRow).fill(0));
+                playerGameField.push(new Array(BoundaryRow).fill("u"));
                 CheckedPositions.push(new Array(BoundaryRow).fill(0));
             }
             break;
@@ -263,7 +266,35 @@ function GameFieldfunc() {
     return GameField;
 }
 
+function addClickedCellToRevealList(x, y) {
+    console.log("this is reveallist",revealList);
+    // if (((revealList[revealList.length-1][0][0] == x)&& (revealList[revealList.length-1][0][1] == y))) {
+
+        if (GameField[x][y] == "z") {
+            revealList.push([[x, y], 0])
+        } else {
+            revealList.push([[x, y], GameField[x][y]]);
+        }
+    }
+    // revealList.push([[x, y], GameField[x][y]]);
+// }
+
+function GameFieldOfPlayer() {
+    return playerGameField;//list
+}
+
+function updateGameFieldOfPlayer(revealList) {
+    revealList.forEach((ListOfPosAndValue) => {
+        let pos = ListOfPosAndValue[0];
+        let value = ListOfPosAndValue[1];
+
+        playerGameField[pos[0]][pos[1]] = value;
+
+    })
+}
+
 function revealListfunc() {
+    updateGameFieldOfPlayer(revealList);
     return revealList;
 }
 
@@ -286,4 +317,4 @@ function restartToDefault() {
 
 }
 
-module.exports = { digitCounter, GameFieldinput, bombPositionsfunc, restartToDefault, revealListfunc, GameFieldfunc, printGameField, GameField, revealBlock, revealList, chooseGameLevel, entryPosition, setBombPositions, setBombsCounters }
+module.exports = { GameFieldOfPlayer, addClickedCellToRevealList, digitCounter, GameFieldinput, bombPositionsfunc, restartToDefault, revealListfunc, GameFieldfunc, printGameField, GameField, revealBlock, revealList, chooseGameLevel, entryPosition, setBombPositions, setBombsCounters }

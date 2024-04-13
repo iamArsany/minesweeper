@@ -250,7 +250,7 @@ function toggleFlagMarkCell(cell) {
             cell.onclick = null;
         }
         if (FlagsCounter <= 1) {
-            
+           checkIfWin(); 
         }
 
     } else if (FirstTimeBomb && FlagsCounter == 0 && cell.classList.contains("flag-mark")) {
@@ -265,7 +265,6 @@ function toggleFlagMarkCell(cell) {
 
 
 async function toggleclickedCell(cell) {
-
     var index = Array.from(cell.parentNode.children).indexOf(cell);
     col = index % 9;
     row = Math.trunc(index / 9);
@@ -350,7 +349,7 @@ async function toggleclickedCell(cell) {
         }
 
         if (FlagsCounter <= 1) {
-            
+            checkIfWin();
         }
 
     } catch (error) {
@@ -429,4 +428,6 @@ async function restartGame() {
     }
 
 }
+
+
 
