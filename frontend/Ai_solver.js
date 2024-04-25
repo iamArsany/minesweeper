@@ -62,6 +62,7 @@ async function revealCell(x, y) {
 }
 
 async function flagCell(x, y) {
+    console.log("this is the cell getting flagged",playergamefield[x][y])
     playergamefield[x][y] = 'f';
     let pos = x * 9 + y;
     await toggleFlagMarkCell(document.getElementsByClassName("cell")[pos])
@@ -161,9 +162,7 @@ function breadthFirstSearch(startX, startY) {
     return ListOfnumbers;
 }
 
-async function solve_reveal_and_flag(ListOfnumbers) {
 
-}
 
 async function Ai_solver() {
     let posToReveal = [5,5];
@@ -183,12 +182,14 @@ async function Ai_solver() {
             let positionsOfNums = PointSurroundingData[0];
     
             if (playergamefield[pos[0]][pos[1]] == (unrevealedNum + FlagsNum)) {
-                positionsOfNums.forEach((Pos) => {
-                    if(playergamefield[Pos[0][0]][Pos[0][1]]!='f'){
-                         console.log("this is should be flagged: ",playergamefield[Pos[0][0]][Pos[0][1]])
-                        flagCell(...Pos[0]);
+                for (const Pos of positionsOfNums) {
+                    if (playergamefield[Pos[0][0]][Pos[0][1]] !== 'f') {
+                        console.log("this is should be flagged: ", playergamefield[Pos[0][0]][Pos[0][1]]);
+                        playergamefield[Pos[0][0]][Pos[0][1]]="f";
+                        // await flagCell(...Pos[0]);
                     }
-                });
+                }
+                
             }
     
             if (playergamefield[pos[0]][pos[1]] == FlagsNum) {
@@ -204,8 +205,32 @@ async function Ai_solver() {
         flags--;
     }
     
-    
+    await flagAllCells();
 }
+async function flagAllCells() {
+    let positionsToFlag = [];
+
+    // Iterate through playergamefield and save positions
+    for (let x = 0; x < playergamefield.length; x++) {
+        for (let y = 0; y < playergamefield[x].length; y++) {
+            let pos = x * 9 + y; // Calculate position in the HTML grid
+            let cell = document.getElementsByClassName("cell")[pos]; // Get corresponding HTML cell
+
+            if (!cell.classList.contains("flag-cell")) { // Check if cell has class "flag-cell"
+                if (playergamefield[x][y] === 'u' || playergamefield[x][y] === 'f') {
+                    positionsToFlag.push([x, y]); // Save position [x, y] if value is 'u' or 'f' and cell doesn't have class "flag-cell"
+                }
+            }
+        }
+    }
+
+    // Iterate through saved positions and flag each cell
+    for (let i = 0; i < positionsToFlag.length; i++) {
+        let [x, y] = positionsToFlag[i];
+        await flagCell(x, y);
+    }
+}
+
 
 
 

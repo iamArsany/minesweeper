@@ -231,7 +231,7 @@ document.addEventListener("contextmenu", (event) => {
 
 let originalOnclickState;
 
-function toggleFlagMarkCell(cell) {
+async function toggleFlagMarkCell(cell) {
 
     if (FirstTimeBomb && FlagsCounter > 0) {
 
