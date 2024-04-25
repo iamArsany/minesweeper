@@ -96,7 +96,7 @@ function getPointSurroundingsUnrevealed(x, y) {
             }
         }
     }
-    let returned=[positions,unRevealedCounter,flaggedCounter];
+    let returned = [positions, unRevealedCounter, flaggedCounter];
     return returned;
 }
 
@@ -144,7 +144,7 @@ function breadthFirstSearch(startX, startY) {
                     reached.add(neighbor);
                     frontier.push(neighbor);
                     // await new Promise(resolve => setTimeout(resolve, 100));
-                    cell[neighbor].style.backgroundColor = "#FF8F00";
+                    // cell[neighbor].style.backgroundColor = "#FF8F00";
                     //add only the number to the list;
                     let x = Math.floor(neighbor / 9);
                     let y = neighbor % 9;
@@ -161,32 +161,50 @@ function breadthFirstSearch(startX, startY) {
     return ListOfnumbers;
 }
 
+async function solve_reveal_and_flag(ListOfnumbers) {
 
+}
 
 async function Ai_solver() {
-    let posToReveal = [0, 0];
+    let posToReveal = [5,5];
     await revealCell(...posToReveal);
     console.log("test", playergamefield);
-    
+
     let ListOfnumbers = breadthFirstSearch(...posToReveal); // Retrieve list of cell coordinates to explore
 
-     /* assume you have defined flags variable */
+    /* assume you have defined flags variable */
 
-    // while (flags > 0) {
+    while (flags > 0) {
         for (let i = 0; i < ListOfnumbers.length; i++) {
             let pos = ListOfnumbers[i];
-            let PointSurroundingData = getPointSurroundingsUnrevealed(...pos);
+            let PointSurroundingData = await getPointSurroundingsUnrevealed(...pos); // Ensure to await the async function call
             let unrevealedNum = PointSurroundingData[1];
             let FlagsNum = PointSurroundingData[2];
             let positionsOfNums = PointSurroundingData[0];
+    
             if (playergamefield[pos[0]][pos[1]] == (unrevealedNum + FlagsNum)) {
                 positionsOfNums.forEach((Pos) => {
-                    flagCell(...Pos[0]);
+                    if(playergamefield[Pos[0][0]][Pos[0][1]]!='f'){
+                         console.log("this is should be flagged: ",playergamefield[Pos[0][0]][Pos[0][1]])
+                        flagCell(...Pos[0]);
+                    }
                 });
             }
+    
+            if (playergamefield[pos[0]][pos[1]] == FlagsNum) {
+                for (let j = 0; j < positionsOfNums.length; j++) {
+                    let posInfo = positionsOfNums[j];
+                    if (posInfo[1] == 'u') {
+                        await revealCell(...posInfo[0]);
+                    }
+                }
+            }
         }
-        // flags--;
-    // }
+        ListOfnumbers = breadthFirstSearch(...posToReveal);
+        flags--;
+    }
+    
+    
 }
 
 
