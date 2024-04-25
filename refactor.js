@@ -5,12 +5,12 @@ let newrow;
 let GameField;
 let BoundaryCol;
 let BoundaryRow;
-let stack = new Array();
-let revealList = new Array();
-let bombPositions = new Array();
-let bombPositionsValue = new Array();
-let duplicatedGameField = new Array();
-let playerGameField = new Array();
+let stack; 
+let revealList; 
+let bombPositions; 
+let bombPositionsValue; 
+let duplicatedGameField; 
+let playerGameField; 
 
 let CheckedPositions;
 let startposition;
@@ -20,6 +20,14 @@ let digitCounter = 0;
 function chooseGameLevel(level) {
     GameField = new Array();
     CheckedPositions = new Array();
+    playerGameField=new Array();
+    //if any problem happened those are the reasons
+    stack=new Array();
+    revealList=new Array();
+    bombPositions=new Array();
+    bombPositionsValue=new Array();
+    duplicatedGameField=new Array();
+
     switch (level) {
         case "easy":
             BoundaryCol = 9;
@@ -280,6 +288,7 @@ function addClickedCellToRevealList(x, y) {
 // }
 
 function GameFieldOfPlayer() {
+    console.log(playerGameField);
     return playerGameField;//list
 }
 
