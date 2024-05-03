@@ -197,7 +197,7 @@ function revealBlock(x, y) {
                     revealList.push([[...position], GameField[position[0]][position[1]]]);
                 }
                 markCheckedPosition(...position);
-                GameField[position[0]][position[1]] = "m";
+                GameField[position[0]][position[1]] = "b";
             }
         });
         const poppedElementPosition = stack.pop();
