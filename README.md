@@ -14,7 +14,7 @@ Welcome to the Minesweeper project! This README will guide you through setting u
 ```bash
 git clone <repository_url>
 cd <project_folder>
-
+```
 ## Backend Setup
 
 1. Once you're in the project folder, navigate to the backend folder:
